@@ -22,7 +22,7 @@ def main():
 
 def create_task():
     """Called when user presses Enter"""
-    task_title = sys.argv[1] if len(sys.argv) > 1 else ""
+    task_title = sys.argv[2] if len(sys.argv) > 2 else ""
     notion = NotionHelper()
     
     try:
@@ -30,12 +30,12 @@ def create_task():
         if 'id' in result:
             print(f"✅ Task '{task_title}' created successfully")
         else:
-            print("❌ Failed to create task")
+            print(f"❌ Failed to create task: {result}")
     except Exception as e:
         print(f"❌ Error: {str(e)}")
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--create":
+    if len(sys.argv) > 2 and sys.argv[1] == "--create":
         create_task()
     else:
         main()

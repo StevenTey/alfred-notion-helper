@@ -75,7 +75,7 @@ class NotionHelper:
         data = {
             "parent": {"database_id": self.task_database_id},
             "properties": {
-                "Name": {
+                "Task": {
                     "title": [{"text": {"content": title}}]
                 }
             }
@@ -116,4 +116,6 @@ class NotionHelper:
 
     def get_page_url(self, page_id):
         """Get the Notion URL for a page"""
-        return f"https://www.notion.so/{page_id.replace('-', '')}"
+        # Remove any dashes and ensure proper format
+        clean_id = page_id.replace('-', '')
+        return f"https://www.notion.so/{clean_id}"

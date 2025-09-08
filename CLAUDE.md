@@ -9,7 +9,7 @@ This is an Alfred workflow project for integrating with Notion. Creates 5 core s
 **Current Status**: Core implementation complete. All 5 features implemented and ready for Alfred configuration.
 
 **Core Features**:
-1. **Clipboard Dump** - Hotkey to dump clipboard content to Notion info page with timestamp
+1. **Clipboard Dump** - Hotkey to dump clipboard content or typed text to Notion info page with timestamp
 2. **Quick Task Creation** - `nt` keyword to instantly create tasks in Notion database  
 3. **Page Search & Access** - `np` keyword to search and open Notion pages directly
 4. **Meeting Notes** - `nm` keyword to create timestamped meeting notes with template
@@ -49,12 +49,15 @@ Keep functions small and focused:
 
 **File Structure**:
 - `notion_helper.py` - Core Notion API integration class
-- `clipboard_dump.py` - Hotkey-triggered clipboard dump functionality  
+- `clipboard_keyword.py` - Unified clipboard dump functionality with keyword support
+- `dump_wrapper.sh` - Shell wrapper for clipboard dumping in Alfred
 - `quick_task.py` - Task creation with `nt` keyword
 - `page_access.py` - Page search/open with `np` keyword
 - `meeting_notes.py` - Meeting note creation with `nm` keyword
 - `daily_journal.py` - Journal entry with `nj` keyword
 - `setup_instructions.md` - Complete Alfred workflow setup guide
+- `.env.example` - Environment variable configuration template
+- `requirements.txt` - Python dependencies
 
 **API Integration**:
 - Uses official Notion API v2022-06-28
@@ -94,4 +97,4 @@ Each Python script corresponds to a Script Filter in Alfred with specific keywor
 
 ## Git Configuration
 
-Repository on `master` branch. Current implementation is feature-complete for the 5 core actions.
+Repository on `main` branch. Current implementation is feature-complete for the 5 core actions.

@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Alfred workflow project for integrating with Notion. Creates 5 core shortcuts to eliminate friction when working with Notion through Alfred.
+This is an Alfred workflow project for integrating with Notion. Creates 6 core shortcuts to eliminate friction when working with Notion through Alfred.
 
-**Current Status**: Core implementation complete. All 5 features implemented and ready for Alfred configuration.
+**Current Status**: Core implementation complete. All 6 features implemented and ready for Alfred configuration.
 
 **Core Features**:
 1. **Clipboard Dump** - Hotkey to dump clipboard content or typed text to Notion info page with timestamp
@@ -14,6 +14,7 @@ This is an Alfred workflow project for integrating with Notion. Creates 5 core s
 3. **Page Search & Access** - `np` keyword to search and open Notion pages directly
 4. **Meeting Notes** - `nm` keyword to create timestamped meeting notes with template
 5. **Daily Journal** - `nj` keyword to add entries to daily journal pages
+6. **Meeting Sync** - Auto-sync meeting notes from calendar database with template cloning
 
 ## Important Instructions
 - Think Hard very hard.
@@ -55,14 +56,18 @@ Keep functions small and focused:
 - `page_access.py` - Page search/open with `np` keyword
 - `meeting_notes.py` - Meeting note creation with `nm` keyword
 - `daily_journal.py` - Journal entry with `nj` keyword
+- `meeting_sync.py` - Meeting notes sync from calendar database
+- `meeting_sync_wrapper.sh` - Shell wrapper for meeting sync Alfred integration
 - `setup_instructions.md` - Complete Alfred workflow setup guide
 - `.env.example` - Environment variable configuration template
 - `requirements.txt` - Python dependencies
+- `archived_functions/` - Contains unused/deprecated functions - SKIP BY DEFAULT when analyzing codebase
 
 **API Integration**:
 - Uses official Notion API v2022-06-28
 - Requires Notion integration token with appropriate page/database permissions
-- Handles page creation, content appending, database entries, and search
+- Handles page creation, content appending, database entries, search, and database querying
+- Supports template page cloning and database property updates
 
 ## Configuration Requirements
 
@@ -72,6 +77,8 @@ Keep functions small and focused:
 - `TASK_DATABASE_ID` - Target database for tasks  
 - `MEETING_NOTES_PARENT_ID` - Parent page for meeting notes
 - `DAILY_JOURNAL_PARENT_ID` - Parent page for journal entries
+- `MEETINGS_DATABASE_ID` - Database containing synced calendar meetings
+- `MEETING_TEMPLATE_PAGE_ID` - Template page to clone for meeting notes
 
 **Alfred Setup**:
 Each Python script corresponds to a Script Filter in Alfred with specific keywords and actions. See `setup_instructions.md` for detailed configuration steps.
@@ -86,6 +93,7 @@ Each Python script corresponds to a Script Filter in Alfred with specific keywor
 
 **Common Development Tasks**:
 - **Testing scripts**: `python3 script_name.py "test input"`
+- **Testing meeting sync**: `python3 meeting_sync.py "today"` or `./meeting_sync_wrapper.sh --sync today`
 - **Debugging**: Check Alfred's workflow debugger for error output
 - **Adding features**: Follow existing pattern in `notion_helper.py`
 
@@ -97,4 +105,4 @@ Each Python script corresponds to a Script Filter in Alfred with specific keywor
 
 ## Git Configuration
 
-Repository on `main` branch. Current implementation is feature-complete for the 5 core actions.
+Repository on `main` branch. Current implementation is feature-complete for the 6 core actions including the new meeting sync functionality.

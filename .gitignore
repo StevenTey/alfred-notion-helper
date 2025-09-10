@@ -4,6 +4,12 @@
 .env.local
 config.json
 
+# Google Calendar API credentials
+credentials.json
+token.json
+client_secret.json
+*.credentials
+
 # Alfred workflow generated files
 info.plist
 
